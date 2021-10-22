@@ -15,5 +15,5 @@ that's all!
 ## run
 
 ```
-$ connect-aripods "Fndroid's AirPods"
+$ ./connect-aripods "Fndroid's AirPods"
 ```
