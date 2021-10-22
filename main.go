@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/base64"
+	"log"
 	"os"
 	"os/exec"
 
@@ -17,6 +18,7 @@ func check(e error) {
 }
 
 func main() {
+	log.Println("Starting to detect audio status...")
 	args := os.Args[1:]
 	if len(args) != 1 {
 		panic("Usage: connect-airpods \"Fndroid's AriPods\"")
@@ -33,6 +35,7 @@ func main() {
 		for change := range channel {
 			if change.Action == "Created" {
 				if change.Pid.Name == "com.apple.Music.playback" || change.Pid.Name == "Playing audio" {
+					log.Println("Audio is playing")
 					cmd := exec.Command("osascript", "./script.scpt", args[0])
 					cmd.Run()
 				}
